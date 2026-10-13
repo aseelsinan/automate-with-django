@@ -1,6 +1,9 @@
-from django.core.management import BaseCommand,CommandError
+from django.core.management.base import BaseCommand,CommandError
 from django.apps import apps
 import csv
+
+# Proposed Command = Python manage.py import_data file_path model_name
+
 class Command(BaseCommand):
     help='insert specific CSV to Specific Model'
     
