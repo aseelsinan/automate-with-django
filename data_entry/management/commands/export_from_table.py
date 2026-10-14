@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand ,CommandError
 from django.apps import apps
 import datetime
 import csv
@@ -18,14 +18,14 @@ class Command(BaseCommand):
                 break
             except LookupError:
                 continue
+        
         if not model:
-            self.stdout.write(self.style.ERROR(f'Model {model_name} found'))
-            return 
+           raise CommandError(f'model {model_name} not found in app')
+         
         
         data= model.objects.all()
         
         file_path=f'exported_{model_name}_data_{datetime.datetime.now().strftime('%d%m%Y%H%M%S')}.csv'
-        
         with open(file_path,'w',newline='')as file:
             
             writer =csv.writer(file)
@@ -34,4 +34,3 @@ class Command(BaseCommand):
                 writer.writerow([field.name for field in model._meta.fields])
             self.stdout.write(self.style.SUCCESS(f'File {file_path} exported successfully'))
             
-                

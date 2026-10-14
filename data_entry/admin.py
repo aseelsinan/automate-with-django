@@ -9,3 +9,4 @@ class StudentAdmin(admin.ModelAdmin):
     search_fields=['name','roll_number']
     
 admin.site.register(models.Customer)
+admin.site.register(models.FifaPlayer)
