@@ -9,4 +9,3 @@ class Command(BaseCommand):
         
         # Write Message in Terminal
         self.stdout.write('Hello World')
-        # return super().handle(*args, **options)

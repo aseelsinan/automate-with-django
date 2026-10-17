@@ -7,6 +7,7 @@ class Command(BaseCommand):
     
     def add_arguments(self, parser):
         parser.add_argument('file_path',type=str,help='File to CSV Path')
+
     def handle(self,*args, **kwargs):
         file_path=kwargs['file_path']
         with open(file_path,'r',encoding='utf-8') as file:

@@ -1,9 +1,12 @@
-from django.shortcuts import render ,redirect
-from .utils import get_all_custom_models
-from uploades.models import Upload
-from django.conf import settings
-from django.core.management import call_command
 from django.contrib import messages
+from django.shortcuts import redirect, render
+
+from uploades.models import Upload
+
+from .tasks import import_data_task
+from .utils import check_csv_errors, get_all_custom_models
+
+
 def data_entry(request):
     if request.method=='POST':
         file_path=request.FILES.get('file_path')
@@ -13,18 +16,21 @@ def data_entry(request):
         upload = Upload.objects.create(file=file_path,model_name=model_name)
         
         #construct full path
-        relative_path=upload.file.url
-        base_url=settings.BASE_DIR
-        path=f'{base_url}{relative_path}'
-        print(path)
-        
+        path=upload.file.path
+       
+        # Check CSV Erorrs 
         try:
-            call_command('insert_data_specific',path,model_name)
-            messages.success(request,'Data imported successfully')
-        except Exception as e:
-            messages.error(request,str(e))
-            
+            check_csv_errors(path,model_name)
+        except Exception as e:  # noqa: BLE001
+            messages.error (request,str(e))   
+            upload.delete()
+            return redirect('import-data')
+         
+        # Handle import data task 
+        import_data_task.delay(path,model_name)
+        messages.success(request,'your data is being imported , you will notified once it is done')
         return redirect('import-data')
+        
     else:
         all_models=get_all_custom_models()
         context ={'all_models':all_models}
