@@ -8,7 +8,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 path('data/', include('data_entry.urls')),
-path('', views.home),
+path('', views.home , name='home'),
 ]
 
 if settings.DEBUG:

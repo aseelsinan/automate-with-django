@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- استدعاء ملف التنسيق المشترك للنماذج -->
+<link rel="stylesheet" href="{% static 'css/data/data-export.css' %}">
+<link rel="stylesheet" href="{% static 'css/data/data-entery.css' %}">
+
+<!-- تخصيص اللون الأخضر الزمردي لصفحة التصدير -->
+
+<div class="container py-4">
+  <div class="import-card export-card">
+    <!-- ترويسة البطاقة -->
+    <div class="text-center mb-4">
+      <div class="header-icon-emerald">
+        <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+      </div>
+      <h3 class="text-capitalize fw-bold mb-2">Export Data From Database Table</h3>
+      <p class="small mb-0" style="color: var(--text-secondary);">
+        Exports data from a specific table to a CSV file.
+      </p>
+    </div>
+
+    <!-- نموذج التصدير -->
+    <form
+      action="{% url 'export-data' %}"
+      method="POST"
+      id="exportForm"
+    >
+      {% csrf_token %}
+
+      <!-- اختيار جدول قاعدة البيانات -->
+      <div class="mb-4">
+        <label for="model-name" class="form-label-custom">
+          <i class="bi bi-table text-emerald"></i>
+          <span>Select Database Table</span>
+        </label>
+        <select
+          required
+          name="model-name"
+          id="model-name"
+          class="form-control form-select custom-select export-select"
+        >
+          <option value="" disabled selected>Select</option>
+          {% for model in all_models %}
+          <option value="{{model}}">{{model}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- معاينة تفاعلية لملف التصدير -->
+      <div class="export-info-box mb-4" id="exportPreviewBox">
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-filetype-csv fs-3 text-emerald"></i>
+          <div>
+            <div class="fw-semibold small" id="previewTitle">Output Format: CSV</div>
+            <div class="text-secondary" style="font-size: 0.78rem;" id="previewSubtitle">
+              Select a table above to generate its spreadsheet
+            </div>
+          </div>
+        </div>
+        <span class="csv-preview-badge" id="csvBadge">
+          <i class="bi bi-check2-circle"></i>
+          <span id="csvFileName">ready.csv</span>
+        </span>
+      </div>
+
+      <!-- زر التصدير -->
+      <button class="btn btn-export mt-2" type="submit" id="exportBtn">
+        <i class="bi bi-cloud-arrow-down-fill"></i>
+        <span>Export Data</span>
+      </button>
+
+      <!-- رسائل التنبيه -->
+      {% include 'alerts.html' %}
+    </form>
+  </div>
+</div>
+
+<!-- سكريبت تفاعلي لتحديث اسم الملف المتوقع عند اختيار الجدول -->
+<script src="{% static 'js/data/export-data.js' %}"></script>
+{% endblock content %}

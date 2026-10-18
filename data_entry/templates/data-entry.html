@@ -1,45 +1,82 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Automate Booring Stuff With Django</title>
-  </head>
-  <body>
-    <div class='container'>
-      <h3 class="text-capitalize text-center ">Import Data To Database Table</h3>
-      <form action="{%url 'import-data'%}" method="POST" enctype="multipart/form-data" style="max-width:600px; margin: auto; padding-top: 50px; ">
-        {% csrf_token %} 
-        <div class='mt-2'>
-           <label for="file-path">Upload CSV File</label>
-        <input required type="file" name="file_path" id="form-control" class="form-control">
-       
-        </div>
-        <div class='mt-2'>
-           <label for="model-name">Select Database Table </label>
-       <select input required name="model-name" id="" class="form-control">
-        <option value="" disabled selected>Select</option>
-        {% for model in  all_models %}
-        <option value="{{model}}">{{model}}</option>
-        {% endfor %}
-       </select>
-       
-        </div>
-        <button class="btn btn-primary mt-1 " type="submit">Start</button>
-        {%include 'alerts.html'%}
-      </form>
+
+{% block content %}
+<!-- استدعاء ملف التنسيق الخاص بهذه الصفحة فقط -->
+<link rel="stylesheet" href="{% static 'css/data/data-entery.css' %}">
+
+<div class="container py-4">
+  <div class="import-card">
+    <div class="text-center mb-4">
+      <div class="header-icon">
+        <i class="bi bi-database-fill-up"></i>
+      </div>
+      <h3 class="text-capitalize fw-bold mb-2">Import Data To Database Table</h3>
+      <p class="small mb-0" style="color: var(--text-secondary);">
+        CSV / Database Table
+      </p>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="{% static 'js/custom.js' %}"></script>
-  </body>
-</html>
+
+    <form
+      action="{% url 'import-data' %}"
+      method="POST"
+      enctype="multipart/form-data"
+      id="importForm"
+    >
+      {% csrf_token %}
+
+      <div class="mb-4">
+        <label for="form-control" class="form-label-custom">
+          <i class="bi bi-filetype-csv text-primary"></i>
+          <span>Upload CSV File</span>
+        </label>
+
+        <div class="upload-zone" id="dropZone">
+          <input
+            required
+            type="file"
+            name="file_path"
+            id="form-control"
+            class="form-control"
+            accept=".csv"
+          />
+          <i class="bi bi-cloud-arrow-up-fill upload-icon"></i>
+          <div class="fw-semibold">CSV</div>
+          <div class=" file-badge" id="fileBadge">
+            <i class="bi bi-check-circle-fill"></i>
+            <span id="fileNameText"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="model-name" class="form-label-custom">
+          <i class="bi bi-table text-primary"></i>
+          <span>Select Database Table</span>
+        </label>
+        <select
+          required
+          name="model-name"
+          id="model-name"
+          class="form-control form-select custom-select"
+        >
+          <option value="" disabled selected>Select</option>
+          {% for model in all_models %}
+          <option value="{{model}}">{{model}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button class="btn btn-primary btn-submit mt-2" type="submit" id="submitBtn">
+        <i class="bi bi-play-circle-fill"></i>
+        <span>Start</span>
+      </button>
+
+      {% include 'alerts.html' %}
+    </form>
+  </div>
+</div>
+
+<!-- استدعاء ملف الجافاسكريبت الخاص بهذه الصفحة فقط -->
+<script src="{% static 'js/data/data-entry.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,77 @@
+  .export-card::before {
+    background: linear-gradient(90deg, #10b981, #059669, #06b6d4) !important;
+  }
+
+  .header-icon-emerald {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #10b981;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .text-emerald {
+    color: #10b981 !important;
+  }
+
+  .export-select:focus {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15) !important;
+  }
+
+  .export-info-box {
+    border: 1px dashed var(--border-color);
+    border-radius: 16px;
+    background: var(--bg-input);
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+  }
+
+  .export-info-box.active {
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.06);
+  }
+
+  .csv-preview-badge {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-export {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.45);
+    transition: all 0.25s ease;
+  }
+
+  .btn-export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.6);
+    color: #ffffff;
+  }

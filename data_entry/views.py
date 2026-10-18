@@ -36,3 +36,7 @@ def data_entry(request):
         context ={'all_models':all_models}
         
     return render(request,'data-entry.html',context)
+
+
+def data_export(request):
+    return render(request,'data-export.html')

@@ -1,25 +1,167 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Automate Booring Stuff With Django</title>
-  </head>
-  <body>
-   <a href="{%url 'import-data' %}">Go To data Entry</a>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Main Section -->
+    <main class="container py-5" style="max-width: 1120px;">
+      <!-- Hero Header -->
+      <div class="text-center mb-4">
+        <div class="hero-badge">
+          <i class="bi bi-stars"></i>
+          <span>Django Automation Suite</span>
+        </div>
+        <h1 class="hero-title">
+          Automate The Boring Stuff <br class="d-none d-sm-inline" />
+          <span class="gradient-text">With Django</span>
+        </h1>
+        <p class="hero-subtitle">
+          Streamline your daily workflows, manage datasets, dispatch campaigns, and extract web insights from one unified command center.
+        </p>
+
+        <!-- Live Search Bar -->
+        <div class="search-wrapper">
+          <i class="bi bi-search search-icon"></i>
+          <input
+            type="text"
+            id="toolSearch"
+            class="search-input"
+            placeholder="Search automation tools (e.g., CSV, Email, Scraping)..."
+          />
+        </div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="row g-4" id="toolsGrid">
+        <!-- 1. Import Data -->
+        <div class="col-12 col-md-6 col-lg-4 tool-item">
+          <a href="{% url 'import-data' %}" class="tool-card theme-blue delay-1">
+            <div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="icon-box">
+                  <i class="bi bi-database-fill-up"></i>
+                </div>
+                <span class="tool-tag">Database</span>
+              </div>
+              <h3 class="tool-title">Import Data</h3>
+              <p class="tool-desc">
+                Imports data from CSV file to any table.
+              </p>
+            </div>
+            <div class="tool-footer">
+              <span>Launch Importer</span>
+              <i class="bi bi-arrow-right arrow-icon"></i>
+            </div>
+          </a>
+        </div>
+
+        <!-- 2. Export Data -->
+        <div class="col-12 col-md-6 col-lg-4 tool-item">
+          <a href="{% url 'export-data' %}" class="tool-card theme-emerald delay-2">
+            <div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="icon-box">
+                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                </div>
+                <span class="tool-tag">Export</span>
+              </div>
+              <h3 class="tool-title">Export Data</h3>
+              <p class="tool-desc">
+                Exports data from a specific table to a CSV file.
+              </p>
+            </div>
+            <div class="tool-footer">
+              <span>Export Records</span>
+              <i class="bi bi-arrow-right arrow-icon"></i>
+            </div>
+          </a>
+        </div>
+
+        <!-- 3. Bulk Emails -->
+        <div class="col-12 col-md-6 col-lg-4 tool-item">
+          <a href="#" class="tool-card theme-rose delay-3">
+            <div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="icon-box">
+                  <i class="bi bi-send-check-fill"></i>
+                </div>
+                <span class="tool-tag">Campaigns</span>
+              </div>
+              <h3 class="tool-title">Bulk Emails</h3>
+              <p class="tool-desc">
+                Sends bulk emails to users
+              </p>
+            </div>
+            <div class="tool-footer">
+              <span>Create Campaign</span>
+              <i class="bi bi-arrow-right arrow-icon"></i>
+            </div>
+          </a>
+        </div>
+
+        <!-- 4. Email Tracking -->
+        <div class="col-12 col-md-6 col-lg-4 tool-item">
+          <a href="#" class="tool-card theme-amber delay-4">
+            <div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="icon-box">
+                  <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <span class="tool-tag">Analytics</span>
+              </div>
+              <h3 class="tool-title">Email Tracking</h3>
+              <p class="tool-desc">
+                Tracks emails and shows open and click rate
+              </p>
+            </div>
+            <div class="tool-footer">
+              <span>View Metrics</span>
+              <i class="bi bi-arrow-right arrow-icon"></i>
+            </div>
+          </a>
+        </div>
+
+        <!-- 5. Compress Images -->
+        <div class="col-12 col-md-6 col-lg-4 tool-item">
+          <a href="#" class="tool-card theme-purple delay-5">
+            <div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="icon-box">
+                  <i class="bi bi-images"></i>
+                </div>
+                <span class="tool-tag">Media Optimizer</span>
+              </div>
+              <h3 class="tool-title">Compress Images</h3>
+              <p class="tool-desc">
+                Compresses Image files and reduces the size
+              </p>
+            </div>
+            <div class="tool-footer">
+              <span>Optimize Media</span>
+              <i class="bi bi-arrow-right arrow-icon"></i>
+            </div>
+          </a>
+        </div>
+
+        <!-- 6. Web Scraping -->
+        <div class="col-12 col-md-6 col-lg-4 tool-item">
+          <a href="#" class="tool-card theme-cyan delay-6">
+            <div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="icon-box">
+                  <i class="bi bi-globe2"></i>
+                </div>
+                <span class="tool-tag">Crawler</span>
+              </div>
+              <h3 class="tool-title">Web Scraping</h3>
+              <p class="tool-desc">
+                Scrapes websites for useful information
+              </p>
+            </div>
+            <div class="tool-footer">
+              <span>Start Scraper</span>
+              <i class="bi bi-arrow-right arrow-icon"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+{% endblock content %}
