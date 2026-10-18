@@ -1,0 +1,124 @@
+  /* تنسيقات خاصة ببطاقة المصادقة */
+  .auth-card {
+    max-width: 480px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    border-radius: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  /* الشريط الملون أعلى البطاقة */
+  .auth-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  }
+
+  .auth-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 18px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: #3b82f6;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 8px 20px -6px rgba(59, 130, 246, 0.3);
+  }
+
+  /* تنسيق حقول الإدخال مع الأيقونات */
+  .input-wrapper {
+    position: relative;
+    margin-bottom: 1.25rem;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+
+  .form-control-custom {
+    width: 100%;
+    padding: 0.9rem 1.2rem 0.9rem 3rem;
+    border-radius: 14px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .form-control-custom::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  .form-control-custom:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    background-color: var(--bg-card);
+    outline: none;
+  }
+
+  .form-control-custom:focus + .input-icon {
+    color: #3b82f6;
+  }
+
+  .btn-auth {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.45);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.6);
+    color: #ffffff;
+  }
+
+  .auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .auth-links a {
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .auth-links a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
