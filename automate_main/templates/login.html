@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- إعادة استخدام نفس ملف التنسيق الزجاجي الخاص بالمصادقة -->
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="container py-4">
+  <div class="auth-card">
+    <div class="text-center">
+      <div class="auth-icon">
+        <i class="bi bi-box-arrow-in-right"></i>
+      </div>
+      <h3 class="fw-bold mb-1">Welcome Back</h3>
+      <p class="small mb-4" style="color: var(--text-secondary);">
+        Sign in to access your automation dashboard
+      </p>
+    </div>
+
+    <!-- عرض رسائل التنبيه (مثل نجاح إنشاء الحساب أو خطأ تسجيل الدخول) -->
+    <div class="mb-3">
+      {% include 'alerts.html' %}
+    </div>
+
+    <!-- نموذج تسجيل الدخول -->
+    <form action="{% url 'login' %}" method="POST" id="loginForm" novalidate>
+      {% csrf_token %}
+
+      <!-- توليد حقول اسم المستخدم وكلمة المرور تلقائياً عبر Crispy -->
+      {{ form|crispy }}
+
+      <button type="submit" class="btn btn-auth mt-3">
+        <span>Sign In</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+    </form>
+
+    <!-- رابط التحويل لصفحة إنشاء حساب جديد -->
+    <div class="auth-links">
+      Don't have an account? <a href="{% url 'register' %}">Create one</a>
+    </div>
+  </div>
+</div>
+
+<!-- استدعاء نفس سكريبت الأيقونات وإظهار كلمة المرور -->
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock content %}

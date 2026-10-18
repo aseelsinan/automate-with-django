@@ -4,7 +4,7 @@
     <!-- Main Section -->
     <main class="container py-5" style="max-width: 1120px;">
       <!-- Hero Header -->
-      <div class="text-center mb-4">
+      <div class="text-center mb-5">
         <div class="hero-badge">
           <i class="bi bi-stars"></i>
           <span>Django Automation Suite</span>
@@ -17,151 +17,174 @@
           Streamline your daily workflows, manage datasets, dispatch campaigns, and extract web insights from one unified command center.
         </p>
 
-        <!-- Live Search Bar -->
-        <div class="search-wrapper">
-          <i class="bi bi-search search-icon"></i>
-          <input
-            type="text"
-            id="toolSearch"
-            class="search-input"
-            placeholder="Search automation tools (e.g., CSV, Email, Scraping)..."
-          />
-        </div>
+        {% if user.is_authenticated %}
+          <!-- Live Search Bar (يظهر فقط للمستخدم المسجل) -->
+          <div class="search-wrapper mt-4">
+            <i class="bi bi-search search-icon"></i>
+            <input
+              type="text"
+              id="toolSearch"
+              class="search-input"
+              placeholder="Search automation tools (e.g., CSV, Email, Scraping)..."
+            />
+          </div>
+        {% endif %}
       </div>
 
-      <!-- Cards Grid -->
-      <div class="row g-4" id="toolsGrid">
-        <!-- 1. Import Data -->
-        <div class="col-12 col-md-6 col-lg-4 tool-item">
-          <a href="{% url 'import-data' %}" class="tool-card theme-blue delay-1">
-            <div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="icon-box">
-                  <i class="bi bi-database-fill-up"></i>
+      {% if user.is_authenticated %}
+        <!-- Cards Grid (تظهر فقط للمستخدمين المسجلين دخولهم) -->
+        <div class="row g-4" id="toolsGrid">
+          <!-- 1. Import Data -->
+          <div class="col-12 col-md-6 col-lg-4 tool-item">
+            <a href="{% url 'import-data' %}" class="tool-card theme-blue delay-1">
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="icon-box">
+                    <i class="bi bi-database-fill-up"></i>
+                  </div>
+                  <span class="tool-tag">Database</span>
                 </div>
-                <span class="tool-tag">Database</span>
+                <h3 class="tool-title">Import Data</h3>
+                <p class="tool-desc">
+                  Imports data from CSV file to any table.
+                </p>
               </div>
-              <h3 class="tool-title">Import Data</h3>
-              <p class="tool-desc">
-                Imports data from CSV file to any table.
-              </p>
-            </div>
-            <div class="tool-footer">
-              <span>Launch Importer</span>
-              <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-          </a>
-        </div>
+              <div class="tool-footer">
+                <span>Launch Importer</span>
+                <i class="bi bi-arrow-right arrow-icon"></i>
+              </div>
+            </a>
+          </div>
 
-        <!-- 2. Export Data -->
-        <div class="col-12 col-md-6 col-lg-4 tool-item">
-          <a href="{% url 'export-data' %}" class="tool-card theme-emerald delay-2">
-            <div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="icon-box">
-                  <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+          <!-- 2. Export Data -->
+          <div class="col-12 col-md-6 col-lg-4 tool-item">
+            <a href="{% url 'export-data' %}" class="tool-card theme-emerald delay-2">
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="icon-box">
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                  </div>
+                  <span class="tool-tag">Export</span>
                 </div>
-                <span class="tool-tag">Export</span>
+                <h3 class="tool-title">Export Data</h3>
+                <p class="tool-desc">
+                  Exports data from a specific table to a CSV file.
+                </p>
               </div>
-              <h3 class="tool-title">Export Data</h3>
-              <p class="tool-desc">
-                Exports data from a specific table to a CSV file.
-              </p>
-            </div>
-            <div class="tool-footer">
-              <span>Export Records</span>
-              <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-          </a>
-        </div>
+              <div class="tool-footer">
+                <span>Export Records</span>
+                <i class="bi bi-arrow-right arrow-icon"></i>
+              </div>
+            </a>
+          </div>
 
-        <!-- 3. Bulk Emails -->
-        <div class="col-12 col-md-6 col-lg-4 tool-item">
-          <a href="#" class="tool-card theme-rose delay-3">
-            <div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="icon-box">
-                  <i class="bi bi-send-check-fill"></i>
+          <!-- 3. Bulk Emails -->
+          <div class="col-12 col-md-6 col-lg-4 tool-item">
+            <a href="#" class="tool-card theme-rose delay-3">
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="icon-box">
+                    <i class="bi bi-send-check-fill"></i>
+                  </div>
+                  <span class="tool-tag">Campaigns</span>
                 </div>
-                <span class="tool-tag">Campaigns</span>
+                <h3 class="tool-title">Bulk Emails</h3>
+                <p class="tool-desc">
+                  Sends bulk emails to users
+                </p>
               </div>
-              <h3 class="tool-title">Bulk Emails</h3>
-              <p class="tool-desc">
-                Sends bulk emails to users
-              </p>
-            </div>
-            <div class="tool-footer">
-              <span>Create Campaign</span>
-              <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-          </a>
-        </div>
+              <div class="tool-footer">
+                <span>Create Campaign</span>
+                <i class="bi bi-arrow-right arrow-icon"></i>
+              </div>
+            </a>
+          </div>
 
-        <!-- 4. Email Tracking -->
-        <div class="col-12 col-md-6 col-lg-4 tool-item">
-          <a href="#" class="tool-card theme-amber delay-4">
-            <div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="icon-box">
-                  <i class="bi bi-graph-up-arrow"></i>
+          <!-- 4. Email Tracking -->
+          <div class="col-12 col-md-6 col-lg-4 tool-item">
+            <a href="#" class="tool-card theme-amber delay-4">
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="icon-box">
+                    <i class="bi bi-graph-up-arrow"></i>
+                  </div>
+                  <span class="tool-tag">Analytics</span>
                 </div>
-                <span class="tool-tag">Analytics</span>
+                <h3 class="tool-title">Email Tracking</h3>
+                <p class="tool-desc">
+                  Tracks emails and shows open and click rate
+                </p>
               </div>
-              <h3 class="tool-title">Email Tracking</h3>
-              <p class="tool-desc">
-                Tracks emails and shows open and click rate
-              </p>
-            </div>
-            <div class="tool-footer">
-              <span>View Metrics</span>
-              <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-          </a>
-        </div>
+              <div class="tool-footer">
+                <span>View Metrics</span>
+                <i class="bi bi-arrow-right arrow-icon"></i>
+              </div>
+            </a>
+          </div>
 
-        <!-- 5. Compress Images -->
-        <div class="col-12 col-md-6 col-lg-4 tool-item">
-          <a href="#" class="tool-card theme-purple delay-5">
-            <div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="icon-box">
-                  <i class="bi bi-images"></i>
+          <!-- 5. Compress Images -->
+          <div class="col-12 col-md-6 col-lg-4 tool-item">
+            <a href="#" class="tool-card theme-purple delay-5">
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="icon-box">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <span class="tool-tag">Media Optimizer</span>
                 </div>
-                <span class="tool-tag">Media Optimizer</span>
+                <h3 class="tool-title">Compress Images</h3>
+                <p class="tool-desc">
+                  Compresses Image files and reduces the size
+                </p>
               </div>
-              <h3 class="tool-title">Compress Images</h3>
-              <p class="tool-desc">
-                Compresses Image files and reduces the size
-              </p>
-            </div>
-            <div class="tool-footer">
-              <span>Optimize Media</span>
-              <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-          </a>
-        </div>
+              <div class="tool-footer">
+                <span>Optimize Media</span>
+                <i class="bi bi-arrow-right arrow-icon"></i>
+              </div>
+            </a>
+          </div>
 
-        <!-- 6. Web Scraping -->
-        <div class="col-12 col-md-6 col-lg-4 tool-item">
-          <a href="#" class="tool-card theme-cyan delay-6">
-            <div>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="icon-box">
-                  <i class="bi bi-globe2"></i>
+          <!-- 6. Web Scraping -->
+          <div class="col-12 col-md-6 col-lg-4 tool-item">
+            <a href="#" class="tool-card theme-cyan delay-6">
+              <div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="icon-box">
+                    <i class="bi bi-globe2"></i>
+                  </div>
+                  <span class="tool-tag">Crawler</span>
                 </div>
-                <span class="tool-tag">Crawler</span>
+                <h3 class="tool-title">Web Scraping</h3>
+                <p class="tool-desc">
+                  Scrapes websites for useful information
+                </p>
               </div>
-              <h3 class="tool-title">Web Scraping</h3>
-              <p class="tool-desc">
-                Scrapes websites for useful information
-              </p>
-            </div>
-            <div class="tool-footer">
-              <span>Start Scraper</span>
-              <i class="bi bi-arrow-right arrow-icon"></i>
-            </div>
-          </a>
+              <div class="tool-footer">
+                <span>Start Scraper</span>
+                <i class="bi bi-arrow-right arrow-icon"></i>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
+      {% else %}
+        <!-- واجهة ترحيبية للزوار غير المسجلين تدعوهم لتسجيل الدخول -->
+        <div class="text-center py-5 px-4" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; backdrop-filter: blur(16px); max-width: 650px; margin: 0 auto; box-shadow: var(--card-shadow);">
+          <div style="width: 70px; height: 70px; border-radius: 20px; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.25); color: #3b82f6; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 1.2rem;">
+            <i class="bi bi-shield-lock-fill"></i>
+          </div>
+          <h3 class="fw-bold mb-2">Authentication Required</h3>
+          <p class="text-secondary mb-4" style="font-size: 0.98rem; max-width: 500px; margin: 0 auto;">
+            Please sign in to your account or register a new one to access the full suite of automation tools and database managers.
+          </p>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'login' %}" class="btn btn-primary px-4 py-2 fw-bold" style="border-radius: 12px; background: linear-gradient(135deg, #3b82f6, #2563eb); border: none;">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </a>
+            <a href="{% url 'register' %}" class="btn px-4 py-2 fw-bold" style="border-radius: 12px; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3);">
+              <i class="bi bi-person-plus me-1"></i> Register
+            </a>
+          </div>
+        </div>
+      {% endif %}
     </main>
 {% endblock content %}

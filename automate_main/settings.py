@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'data_entry',
     'automate_main',
     'uploades',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +168,8 @@ MAILERS = {
 }
 DEFAULT_FROM_EMAIL='Automate With Django <contact.asinan@gmail.com>'
 DEFAULT_TO_EMAIL='abood777669025@gmail.com'
+
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
