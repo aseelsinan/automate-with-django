@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/email/send-email.css' %}">
+
+<!-- مهم جداً: تحميل ملفات الجافاسكريبت والـ CSS الخاصة بـ RichTextField (CKEditor) -->
+{{ email_form.media }}
+
+<div class="container py-4">
+  <div class="auth-card email-card">
+    <div class="text-center">
+      <div class="header-icon-rose">
+        <i class="bi bi-send-check-fill"></i>
+      </div>
+      <h3 class="fw-bold mb-1">Send Bulk Emails</h3>
+      <p class="small mb-4" style="color: var(--text-secondary);">
+        Select your subscriber list, compose a rich-text message, and attach files.
+      </p>
+    </div>
+
+    <!-- عرض رسائل التنبيه -->
+    <div class="mb-3">
+      {% include 'alerts.html' %}
+    </div>
+
+    <!-- ملاحظة مهمة: أضفنا enctype="multipart/form-data" لدعم حقل attachment -->
+    <form  method="POST" enctype="multipart/form-data" id="emailForm" >
+      {% csrf_token %}
+
+      <!-- حقول الفورم (email_list, subject, body, attachment) -->
+      {{ email_form|crispy }}
+
+      <button type="submit" class="btn btn-email mt-3">
+        <span>Send Bulk Email</span>
+        <i class="bi bi-send-fill"></i>
+      </button>
+    </form>
+
+    <div class="auth-links mt-4">
+      <a href="{% url 'home' %}" style="color: #f43f5e;">
+        <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
+      </a>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/email/send-email.js' %}"></script>
+{% endblock content %}

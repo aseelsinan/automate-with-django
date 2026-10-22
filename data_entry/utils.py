@@ -55,13 +55,22 @@ def check_csv_errors(file_path, model_name):
     return model;
 
 
+def send_email_notification(mail_subject, message, to_email, attachment_path=None):
+    email_sender = getattr(settings, 'DEFAULT_FROM_EMAIL', 'your-email@example.com')
+    
+    # التأكد من أن to_email عبارة عن قائمة
+    if isinstance(to_email, str):
+        to_email = [to_email]
 
+    email = django.core.mail.EmailMessage(
+        subject=mail_subject,
+        body=message,
+        from_email=email_sender,
+        to=to_email
+    )
 
-def send_email_notification(mail_subject,message,to_email):  
+    # إرفاق الملف باستخدام المسار المباشر
+    if attachment_path:
+        email.attach_file(attachment_path)
 
-    try:
-        email_sender=settings.DEFAULT_FROM_EMAIL
-        email=django.core.mail.EmailMessage(mail_subject,message,email_sender,to=[to_email])
-        email.send()
-    except Exception as e:  # noqa: TRY203
-        raise e  # noqa: TRY201
+    email.send()

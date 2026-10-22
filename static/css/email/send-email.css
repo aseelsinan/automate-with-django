@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Bulk Email Campaign - Glassmorphism Styles (Dark & Light Mode Ready)
+   ========================================================================== */
+
+.email-card {
+  max-width: 780px;
+  margin: 2rem auto;
+}
+
+.email-card::before {
+  background: linear-gradient(90deg, #f43f5e, #ec4899, #8b5cf6) !important;
+}
+
+/* أيقونة الترويسة الوردية */
+.header-icon-rose {
+  width: 65px;
+  height: 65px;
+  border-radius: 18px;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  color: #f43f5e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.25);
+  transition: transform 0.35s ease;
+}
+
+.email-card:hover .header-icon-rose {
+  transform: scale(1.06) rotate(-4deg);
+}
+
+/* ضبط القائمة المنسدلة (email_list) وحقل رفع الملفات (attachment) */
+.email-card .form-select,
+.email-card input[type="file"].form-control {
+  padding: 0.82rem 1rem 0.82rem 2.85rem;
+  border-radius: 14px;
+  background-color: rgba(30, 41, 59, 0.55);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  color: var(--text-primary, #f8fafc);
+  font-size: 0.94rem;
+  transition: all 0.25s ease;
+}
+
+[data-bs-theme="light"] .email-card .form-select,
+[data-bs-theme="light"] .email-card input[type="file"].form-control {
+  background-color: rgba(241, 245, 249, 0.85);
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.email-card .form-control:focus,
+.email-card .form-select:focus,
+.email-card input[type="file"].form-control:focus {
+  border-color: #f43f5e;
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.16);
+}
+
+.email-card .crispy-field-box:focus-within .crispy-left-icon {
+  color: #f43f5e;
+}
+
+/* ==========================================================================
+   CKEditor 4 Native Glassmorphism Integration
+   ========================================================================== */
+
+.django-ckeditor-widget {
+  width: 100% !important;
+  display: block !important;
+}
+
+.email-card .cke_chrome {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+  background: rgba(30, 41, 59, 0.55) !important;
+  box-shadow: none !important;
+  transition: all 0.25s ease !important;
+}
+
+[data-bs-theme="light"] .email-card .cke_chrome {
+  background: rgba(241, 245, 249, 0.85) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+.email-card .cke_chrome.editor-focused,
+.email-card .django-ckeditor-widget:focus-within .cke_chrome {
+  border-color: #f43f5e !important;
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.16) !important;
+}
+
+.email-card .cke_top {
+  background: rgba(15, 23, 42, 0.65) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 8px 10px !important;
+  box-shadow: none !important;
+}
+
+[data-bs-theme="light"] .email-card .cke_top {
+  background: rgba(226, 232, 240, 0.75) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+.email-card .cke_toolgroup,
+.email-card .cke_combo_button {
+  background: rgba(30, 41, 59, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  margin: 2px 4px 2px 0 !important;
+}
+
+[data-bs-theme="light"] .email-card .cke_toolgroup,
+[data-bs-theme="light"] .email-card .cke_combo_button {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+}
+
+.email-card .cke_combo_text {
+  color: #e2e8f0 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+[data-bs-theme="light"] .email-card .cke_combo_text {
+  color: #1e293b !important;
+}
+
+.email-card a.cke_button {
+  border-radius: 6px !important;
+  padding: 4px 6px !important;
+  transition: background 0.2s ease !important;
+}
+
+.email-card a.cke_button:hover,
+.email-card .cke_combo_button:hover {
+  background: rgba(244, 63, 94, 0.18) !important;
+}
+
+.email-card a.cke_button_on {
+  background: rgba(244, 63, 94, 0.28) !important;
+  box-shadow: none !important;
+}
+
+[data-bs-theme="dark"] .email-card .cke_button_icon {
+  filter: invert(0.88) hue-rotate(180deg) brightness(1.1);
+}
+
+.email-card .cke_contents {
+  background: transparent !important;
+}
+
+.email-card .cke_bottom {
+  display: none !important;
+}
+
+/* زر الإرسال الوردي */
+.btn-email {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+  border: none;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 12px 25px -6px rgba(244, 63, 94, 0.45);
+  transition: all 0.3s ease;
+}
+
+.btn-email:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -6px rgba(244, 63, 94, 0.65);
+}

@@ -6,13 +6,21 @@ from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-path('data/', include('data_entry.urls')),
-path('', views.home , name='home'),
-# login and register urls
-path('register/', views.register_view , name='register'),
-path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
+    path("admin/", admin.site.urls),
+    path("", views.home, name="home"),
+    # Data Entry website
+    path("data/", include("data_entry.urls")),
+    # Email website
+    path("email/", include("emails.urls")),
+    # login and register urls
+    path("register/", views.register_view, name="register"),
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
+
+
+# Rich Textfield impelemnt
+path('djrichtextfield/', include('djrichtextfield.urls'))
+
 ]
 
 if settings.DEBUG:

@@ -4,23 +4,30 @@ from django.conf import settings
 from django.core.management import call_command
 
 from automate_main.celery import app
+from emails.models import Email
 
 from .utils import send_email_notification
 
 
 @app.task
-def sending_email_task():
-    mail_subject='this subject'
-    message='this is email'
-    
-    to_email=settings.DEFAULT_TO_EMAIL 
-    send_email_notification(mail_subject,message,to_email)
+def send_email_task(email_id, to_emails):
+    try:
+        email_record = Email.objects.get(id=email_id)
+        
+        # نتحقق إذا كان هناك مرفق ونأخذ مساره
+        attachment_path = None
+        if email_record.attachment:
+            attachment_path = email_record.attachment.path
 
-    
-   
-    return 'email sent successfully'
-
-
+        send_email_notification(
+            mail_subject=email_record.subject,
+            message=email_record.body,
+            to_email=to_emails,
+            attachment_path=attachment_path
+        )
+        return 'Email sent successfully via Celery'
+    except Email.DoesNotExist:
+        return 'Email record not found'
 
 
 
